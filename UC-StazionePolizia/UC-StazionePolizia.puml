@@ -1,0 +1,47 @@
+@startuml
+
+top to bottom direction
+
+:CapoPolizia:
+:Dipendente:
+:AgenteDiPattuglia: as ap
+:SergentiDiScrivania:as ss
+:Detective: as d
+
+
+rectangle StazionePolizia{
+(classsificare i fascicoli dei casi salvati nell'archivio delle prove) as cl
+(organizzare incontri privati con il sindaco) as mm
+(fare rapporto al capo polizia) as rc
+(pattugliare le strade) as ps
+usecase Aarch as "Aggiornare l'archivio delle prove"
+(notare qualche situazione illegale) as ni
+(Interrogare i sospettati) as is
+(investigare i crimini) as ic
+(interrogare i testimoni) as it
+(ottenere approvazione dal sindaco) as oa
+}
+
+
+Detective <|-- Dipendente
+SergentiDiScrivania <|-- Dipendente
+AgenteDiPattuglia <|-- Dipendente
+CapoPolizia -> cl
+Dipendente -> rc
+CapoPolizia -> mm
+oa ..> "<<extend>>\nse il testimone è un VIP" it
+mm ..> "<<include>>" oa
+ap -> ps
+Aarch ..> "<<include>>"  ic
+ap -> ni
+d --> it
+Aarch ..> "<<include>>" is
+Aarch ..> "<<include>>" ni
+ni ..> "<<extend>>" ps
+ap -> Aarch
+d  --> ic
+d --> is
+ss --> is
+ss --> ic
+
+@enduml
