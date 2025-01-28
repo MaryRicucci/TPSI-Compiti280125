@@ -1,0 +1,20 @@
+class Coordinata {
+private double latitudine  ;
+private double longitudine ;
+
+public Coordinata (double latitudine, double longitudine) {
+//sfrutto il costruttore
+setLatitudine(latitudine)
+setLongitudine (longitudine) 
+}
+
+public void setLatitudine (double latitudine) {
+if (laditudine > 90 || latitudine < -90) 
+throw new IllegalArgumentException ("Valore di latitudine non valido: "+latitudine);
+}
+
+public void setLongitudine (double longitudine) {
+if (longitudine < -180.0 || longitudine > 180.0( {
+throw new IllegalArgumentException ("Valore di longitudine non valido: "+longitudine);
+}
+
